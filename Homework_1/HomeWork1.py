@@ -1,5 +1,6 @@
 import requests
 import json
+
 #Task 1
 url = 'https://api.github.com'
 user ='AlexanderKolenko123'
@@ -12,7 +13,7 @@ all_reps = []
 for repos in res.json():
     all_reps.append(repos['name'])
 
-    with open('Task_1.json', 'w') as f:
+    with open('_1.json', 'w') as f:
         to_json = json.dump(all_reps, f)
 
 #Task 2
@@ -25,5 +26,5 @@ print(response)
 photos = response.json()["photos"]
 print(f"Found {len(photos)} photos")
 
-with open('Task_2.json', 'w') as f:
+with open('_2.json', 'w') as f:
        to_json = json.dump(photos, f)
