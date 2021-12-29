@@ -1,0 +1,12 @@
+                                          vacancy_name  ...             site
+0                    Python Developer (World of Tanks)  ...            hh.ru
+1                                   Python разработчик  ...            hh.ru
+2                  Python Developer (New game product)  ...            hh.ru
+3                    Python Developer (World of Tanks)  ...            hh.ru
+4    Аналитик направления цифрового маркетинга (BI\...  ...            hh.ru
+..                                                 ...  ...              ...
+417                                   Python developer  ...  www.superjob.ru
+418                 Software Engineer (Python / cloud)  ...  www.superjob.ru
+419                         Backend Developer / Python  ...  www.superjob.ru
+420                            Senior python developer  ...  www.superjob.ru
+421  Преподаватель программирования на языке Python...  ...  www.superjob.ru
