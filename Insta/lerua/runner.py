@@ -13,5 +13,5 @@ if __name__ == '__main__':
     process = CrawlerProcess(settings=crawler_settings)
     #process.crawl(AvitoruSpider, search='щенки')
     #process.crawl(LeruaruSpider, search='stulya-dlya-kuhni')
-    process.crawl(InstacomSpider)
+    process.crawl(InstacomSpider, users_list= ['mark_253', 'test_1890'])
     process.start()

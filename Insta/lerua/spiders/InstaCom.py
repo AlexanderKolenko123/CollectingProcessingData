@@ -2,9 +2,8 @@ import scrapy
 import json
 import re
 from scrapy.http import HtmlResponse
-from urllib.parse import urlencode
 from copy import deepcopy
-from instaparser.items import InstaparserItem
+from lerua.items import InstaParcerItem
 
 class InstacomSpider(scrapy.Spider):
     name = 'InstaCom'
@@ -13,28 +12,23 @@ class InstacomSpider(scrapy.Spider):
     login_link = 'https://www.instagram.com/accounts/login/ajax/'
     login = ''
     inst_passw = ''
-    friends = ['artificial_intelligence.23', 'gnaneswarrao_pappapa']
+    friends = ['mark_253', 'test_1890']
     api_url = 'https://i.instagram.com/api/v1'
     posts_hash = '8c2a529969ee035a5063f2fc8602a0fd'
 
     def parse(self, response: HtmlResponse):
         csrf_token = self.fetch_csrf_token(response.text)
 
-        yield scrapy.FormRequest(self.inst_login_link,
+        yield scrapy.FormRequest(self.login_link,
                                  method='POST',
                                  callback=self.login,
-                                 formdata={'username': self.inst_login,
-                                           'enc_password': self.inst_passw},
+                                 formdata={'username': self.login, 'enc_password': self.inst_passw},
                                  headers={'X-CSRFToken': csrf_token})
 
     def login(self, response: HtmlResponse):
         j_data = response.json()
         if j_data['authenticated']:
-            #for user in self.users_for_parse:
-            #    yield response.follow(f'/{user}',
-            #                          callback=self.followers_parse,
-            #                          cb_kwargs={'username': deepcopy(user)})
-            for user in self.users_for_parse:
+            for user in self.friends:
                 yield response.follow(f'/{user}',
                                       callback=self.following_parse,
                                       cb_kwargs={'username': deepcopy(user)})
@@ -77,7 +71,7 @@ class InstacomSpider(scrapy.Spider):
 
         users = j_data.get('users')
         for user in users:
-            item = InstaparserItem(
+            item = InstaParcerItem(
                 user_id = user_id,
                 follower_id=user.get('pk'),
                 username=user.get('username'),
@@ -99,7 +93,7 @@ class InstacomSpider(scrapy.Spider):
 
         users = j_data.get('users')
         for user in users:
-            item = InstaparserItem(
+            item = InstaParcerItem(
                 user_id=user_id,
                 following_id=user.get('pk'),
                 username=user.get('username'),
